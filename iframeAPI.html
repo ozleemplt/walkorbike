@@ -1,0 +1,89 @@
+<html>
+    <head>
+      <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>biking</title>
+    <link rel="stylesheet" href="css/wbstyle.css" />
+    
+    </head>
+    <body>
+      <p>
+        <button id="mute">Street Noise On/Off</button>
+      </p>
+        <style>
+            body {
+                margin: 0;
+            }
+            iframe {
+                border: 0; 
+                width: 100%; 
+                height: 100%;
+            }
+            #youtubeEmbed{
+                position: fixed; 
+                z-index: -99; 
+                width: 100%; 
+                height: 100%;
+            }
+            
+        </style>
+        <div id="youtubeEmbed" class="bg_video" data-video-id="V-TraWXFbCs">
+        </div>
+        <script>
+            // Get element
+            var youtubeEmbedElement = document.getElementById("youtubeEmbed");
+
+            // Add YouTube API script
+            var tag = document.createElement("script");
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName("script")[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            var player;
+            var videoId = youtubeEmbedElement.dataset.videoId;
+            var startSeconds = 0;
+            var endSeconds = 210;
+
+            onYouTubeIframeAPIReady = function () {
+            player = new YT.Player("youtubeEmbed", {
+                videoId: videoId, // YouTube Video ID
+                playerVars: {
+                autoplay: 1, // Auto-play the video on load
+                autohide: 1, // Hide video controls when playing
+                disablekb: 1,
+                controls: 1, // Hide pause/play buttons in player
+                showinfo: 0, // Hide the video title
+                modestbranding: 1, // Hide the Youtube Logo
+                loop: 1, // Run the video in a loop
+                fs: 0, // Hide the full screen button
+                rel: 0,
+                enablejsapi: 1,
+                start: startSeconds,
+                end: endSeconds
+                },
+                events: {
+                onReady: function (e) {
+                    e.target.mute();
+                    e.target.playVideo();
+                },
+                onStateChange: function (e) {
+                    if (e.data === YT.PlayerState.PLAYING) {
+                    document.getElementById("youtubeEmbed").classList.add("loaded");
+                    }
+
+                    if (e.data === YT.PlayerState.ENDED) {
+                    // Loop from starting point
+                    player.seekTo(startSeconds);
+                    }
+                }
+                }
+            });
+            };
+        </script>
+         <script src="js/main.js"></script>
+  
+    </body>
+
+
+</html>

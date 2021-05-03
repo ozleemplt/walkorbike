@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Walk or Bike</title>
+    <link rel="stylesheet" href="css/wbstyle.css" />
+  </head>
+  <body>
+    
+    
+    
+    <section class="showcase">
+        <div class="video-container">
+            <video src="vid/london.mp4" autoplay muted loop ></video>       
+         </div>
+    </section>
+    
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.dropbtn {
+    background-color: #26282c;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+ 
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  flex-direction: column;
+  display: flex;
+    width: 350px;
+    border: 1px #0d141f solid;
+    border-radius: 5px;
+    
+}
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  background-color: #525861 ;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  opacity: 0.6;
+  font-family: "Roboto", sans-serif;
+  padding: 12px 24px;
+ 
+}
+
+.dropdown-content a {
+  color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  opacity: 1;
+
+}
+
+.dropdown a:hover {background-color:#414b57;
+    transform: scale(0.99); }
+
+.show {display: block;}
+</style>
+</head>
+<body>
+    <p>
+ <button id="mute">Street Noise On/Off</button>
+    </p>
+
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Select the city</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="walking.html">İzmir</a>
+    <a href="poznan.html">Poznan</a>
+    <a href="london.html">London</a>
+    <a href="#contact">Berlin</a>
+    <a href="#contact">Warsaw</a>
+  </div>
+</div>
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+const btn = document.getElementById('mute'),
+      video = document.querySelector('video');
+
+btn.addEventListener('click', () => {
+  if (btn.value === 'unmuted') {
+    btn.value = 'muted';
+    btn.innerHTML = 'Street Noise On';
+    video.muted = true;
+  } else {
+    btn.value = 'unmuted';
+    btn.innerHTML = 'Street Noise Off';
+    video.muted = false;
+  }
+});
+</script>
+
+
+</body>
+</html>
